@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Events\TaskCreated;
 
 class Task extends Model
 {
@@ -41,5 +42,9 @@ class Task extends Model
     {
         return $this->hasMany(Comment::class, 'task_id');
     }
+
+    protected $dispatchesEvents = [
+        'created' => TaskCreated::class,
+    ];
 
 }
