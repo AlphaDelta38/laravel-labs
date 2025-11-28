@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Events\CommentCreated;
 
 class Comment extends Model
 {
@@ -28,4 +29,7 @@ class Comment extends Model
         return $this->belongsTo(User::class, 'author_id');
     }
 
+    protected $dispatchesEvents = [
+        'created' => CommentCreated::class,
+    ];
 }
